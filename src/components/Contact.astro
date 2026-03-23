@@ -1,0 +1,209 @@
+---
+---
+
+<section class="section section-alt" id="contacto">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-red">CONTACTANOS</span>
+      <h2>EMPIEZA TU <span class="text-red">TRANSFORMACION</span></h2>
+      <span class="accent-line"></span>
+      <p>Completa el formulario y un asesor se pondra en contacto contigo en menos de 24 horas.</p>
+    </div>
+
+    <div class="contact-grid">
+      <form class="contact-form" action="#" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre Completo *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefono">Telefono / WhatsApp *</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+51 999 888 777" required />
+          </div>
+          <div class="form-group">
+            <label for="plan">Plan de Interes</label>
+            <select id="plan" name="plan">
+              <option value="">Selecciona un plan</option>
+              <option value="basico">Basico - S/ 99/mes</option>
+              <option value="pro">Pro - S/ 149/mes</option>
+              <option value="elite">Elite - S/ 249/mes</option>
+              <option value="no-se">Aun no lo se</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="experiencia">Experiencia Previa</label>
+            <select id="experiencia" name="experiencia">
+              <option value="">Selecciona tu nivel</option>
+              <option value="ninguna">Ninguna - Soy nuevo</option>
+              <option value="principiante">Principiante (0-6 meses)</option>
+              <option value="intermedio">Intermedio (6 meses - 2 anos)</option>
+              <option value="avanzado">Avanzado (2+ anos)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="objetivo">Tu Objetivo Principal</label>
+            <select id="objetivo" name="objetivo">
+              <option value="">Selecciona un objetivo</option>
+              <option value="bajar-peso">Bajar de peso</option>
+              <option value="ganar-musculo">Ganar musculo</option>
+              <option value="tonificar">Tonificar</option>
+              <option value="resistencia">Mejorar resistencia</option>
+              <option value="salud">Salud general</option>
+              <option value="competir">Preparacion para competencia</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary form-submit">SOLICITAR INFORMACION</button>
+      </form>
+
+      <div class="contact-info">
+        <div class="info-card">
+          <h3>Visitanos</h3>
+          <p>Av. San Borja Norte 765</p>
+          <p>San Borja, Lima - Peru</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Horarios</h3>
+          <p><strong>Lun - Vie:</strong> 5:00 AM - 11:00 PM</p>
+          <p><strong>Sabados:</strong> 6:00 AM - 10:00 PM</p>
+          <p><strong>Dom y Feriados:</strong> 7:00 AM - 6:00 PM</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Contacto Directo</h3>
+          <p>Tel: (01) 555-0123</p>
+          <a href="https://wa.me/51999888777" class="whatsapp-btn">
+            <span>WhatsApp: +51 999 888 777</span>
+          </a>
+        </div>
+
+        <div class="info-card">
+          <h3>Siguenos</h3>
+          <p>@ironforge.pe en todas las redes</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-form {
+    background: #fff;
+    padding: 2.5rem;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    background: #f9fafb;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: border-color 0.3s ease;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--secondary);
+    background: #fff;
+  }
+
+  .form-submit {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .info-card {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 1.5rem;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+
+  .info-card h3 {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card p {
+    font-size: 0.9rem;
+    color: #d1d5db;
+    margin-bottom: 0.25rem;
+  }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #25d366;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+
+  .whatsapp-btn:hover {
+    background: #1da851;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>

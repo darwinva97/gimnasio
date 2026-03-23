@@ -1,0 +1,231 @@
+---
+const classes = [
+  {
+    name: "CrossFit",
+    emoji: "&#127947;&#65039;",
+    duration: "60 min",
+    intensity: 5,
+    schedule: "Lun - Sab 7:00 AM",
+    trainer: "Carlos Mendoza",
+    image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&q=80",
+    color: "#dc2626"
+  },
+  {
+    name: "Boxing",
+    emoji: "&#129354;",
+    duration: "45 min",
+    intensity: 5,
+    schedule: "Mar - Jue 6:00 PM",
+    trainer: "Miguel Torres",
+    image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&q=80",
+    color: "#f59e0b"
+  },
+  {
+    name: "Yoga",
+    emoji: "&#129496;",
+    duration: "60 min",
+    intensity: 2,
+    schedule: "Lun - Vie 8:00 AM",
+    trainer: "Lucia Paredes",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80",
+    color: "#22d3ee"
+  },
+  {
+    name: "Spinning",
+    emoji: "&#128692;",
+    duration: "45 min",
+    intensity: 4,
+    schedule: "Lun - Sab 6:30 AM",
+    trainer: "Ana Rivera",
+    image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&q=80",
+    color: "#ef4444"
+  },
+  {
+    name: "Zumba",
+    emoji: "&#128131;",
+    duration: "50 min",
+    intensity: 3,
+    schedule: "Mar - Jue 7:00 PM",
+    trainer: "Maria Gutierrez",
+    image: "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?w=600&q=80",
+    color: "#ec4899"
+  },
+  {
+    name: "HIIT",
+    emoji: "&#127939;",
+    duration: "30 min",
+    intensity: 5,
+    schedule: "Lun - Vie 12:00 PM",
+    trainer: "Roberto Salas",
+    image: "https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80",
+    color: "#f97316"
+  },
+  {
+    name: "Funcional",
+    emoji: "&#129336;",
+    duration: "45 min",
+    intensity: 4,
+    schedule: "Lun - Sab 9:00 AM",
+    trainer: "Diego Vargas",
+    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
+    color: "#10b981"
+  },
+  {
+    name: "Natacion",
+    emoji: "&#127946;",
+    duration: "60 min",
+    intensity: 3,
+    schedule: "Lun - Sab 6:00 AM",
+    trainer: "Patricia Luna",
+    image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=80",
+    color: "#3b82f6"
+  },
+];
+---
+
+<section class="section section-dark" id="clases">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-red">MAS DE 50 CLASES SEMANALES</span>
+      <h2>NUESTRAS <span class="text-red">CLASES</span></h2>
+      <span class="accent-line"></span>
+      <p>Desde alta intensidad hasta relajacion total. Encuentra la clase perfecta para ti.</p>
+    </div>
+
+    <div class="classes-grid">
+      {classes.map((cls) => (
+        <div class="class-card">
+          <div class="class-image" style={`background-image: url('${cls.image}')`}>
+            <div class="class-overlay" style={`background: linear-gradient(to top, ${cls.color}dd, transparent)`}></div>
+            <span class="class-emoji" set:html={cls.emoji}></span>
+          </div>
+          <div class="class-info">
+            <h3 class="class-name">{cls.name}</h3>
+            <div class="class-meta">
+              <span class="class-duration">{cls.duration}</span>
+              <span class="class-intensity">
+                {Array.from({length: 5}).map((_, i) => (
+                  <span class={`dot ${i < cls.intensity ? 'active' : ''}`} style={i < cls.intensity ? `background: ${cls.color}` : ''}></span>
+                ))}
+              </span>
+            </div>
+            <p class="class-schedule">{cls.schedule}</p>
+            <p class="class-trainer">Coach: {cls.trainer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .classes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .class-card {
+    background: #111827;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  }
+
+  .class-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.2);
+  }
+
+  .class-image {
+    position: relative;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .class-overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .class-emoji {
+    position: relative;
+    z-index: 2;
+    font-size: 2.5rem;
+    margin-bottom: -1.25rem;
+    background: #111827;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+
+  .class-info {
+    padding: 1.25rem 1rem 1rem;
+    text-align: center;
+  }
+
+  .class-name {
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .class-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .class-duration {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .class-intensity {
+    display: flex;
+    gap: 3px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #374151;
+  }
+
+  .dot.active {
+    background: var(--secondary);
+  }
+
+  .class-schedule {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-bottom: 0.25rem;
+  }
+
+  .class-trainer {
+    font-size: 0.8rem;
+    color: var(--neon);
+    font-weight: 500;
+  }
+
+  @media (max-width: 1024px) {
+    .classes-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .classes-grid { grid-template-columns: 1fr; }
+  }
+</style>

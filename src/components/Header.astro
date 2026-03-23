@@ -1,0 +1,164 @@
+---
+const navLinks = [
+  { href: "#inicio", label: "Inicio" },
+  { href: "#clases", label: "Clases" },
+  { href: "#planes", label: "Planes" },
+  { href: "#trainers", label: "Trainers" },
+  { href: "#horarios", label: "Horarios" },
+  { href: "#contacto", label: "Contacto" },
+];
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">&#128170;</span>
+      <span class="logo-text">IRON<span class="text-red">FORGE</span></span>
+    </a>
+
+    <nav class="nav" id="nav">
+      {navLinks.map(link => (
+        <a href={link.href} class="nav-link">{link.label}</a>
+      ))}
+    </nav>
+
+    <a href="#planes" class="btn btn-primary header-cta">UNETE HOY</a>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .logo-text {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.75rem;
+    color: #fff;
+    letter-spacing: 0.15em;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #d1d5db;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #fff;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .header-cta {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 900px) {
+    .nav {
+      display: none;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.98);
+      flex-direction: column;
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+
+    .nav.active {
+      display: flex;
+    }
+
+    .header-cta {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('nav');
+  toggle?.addEventListener('click', () => nav?.classList.toggle('active'));
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => nav?.classList.remove('active'));
+  });
+</script>

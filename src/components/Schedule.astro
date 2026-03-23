@@ -1,0 +1,196 @@
+---
+const days = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab"];
+const timeSlots = ["6:00", "7:00", "8:00", "9:00", "10:00", "12:00", "16:00", "17:00", "18:00", "19:00", "20:00"];
+
+interface ClassEntry {
+  name: string;
+  time: string;
+  day: number;
+  color: string;
+  trainer: string;
+}
+
+const schedule: ClassEntry[] = [
+  { name: "Spinning", time: "6:00", day: 0, color: "#ef4444", trainer: "Ana" },
+  { name: "Natacion", time: "6:00", day: 2, color: "#3b82f6", trainer: "Patricia" },
+  { name: "Spinning", time: "6:00", day: 4, color: "#ef4444", trainer: "Ana" },
+  { name: "CrossFit", time: "7:00", day: 0, color: "#dc2626", trainer: "Carlos" },
+  { name: "CrossFit", time: "7:00", day: 2, color: "#dc2626", trainer: "Carlos" },
+  { name: "CrossFit", time: "7:00", day: 4, color: "#dc2626", trainer: "Carlos" },
+  { name: "CrossFit", time: "7:00", day: 5, color: "#dc2626", trainer: "Carlos" },
+  { name: "Yoga", time: "8:00", day: 0, color: "#22d3ee", trainer: "Lucia" },
+  { name: "Yoga", time: "8:00", day: 2, color: "#22d3ee", trainer: "Lucia" },
+  { name: "Yoga", time: "8:00", day: 4, color: "#22d3ee", trainer: "Lucia" },
+  { name: "Funcional", time: "9:00", day: 1, color: "#10b981", trainer: "Diego" },
+  { name: "Funcional", time: "9:00", day: 3, color: "#10b981", trainer: "Diego" },
+  { name: "Funcional", time: "9:00", day: 5, color: "#10b981", trainer: "Diego" },
+  { name: "HIIT", time: "10:00", day: 0, color: "#f97316", trainer: "Roberto" },
+  { name: "HIIT", time: "10:00", day: 3, color: "#f97316", trainer: "Roberto" },
+  { name: "HIIT", time: "12:00", day: 1, color: "#f97316", trainer: "Roberto" },
+  { name: "HIIT", time: "12:00", day: 4, color: "#f97316", trainer: "Roberto" },
+  { name: "Spinning", time: "17:00", day: 1, color: "#ef4444", trainer: "Ana" },
+  { name: "Spinning", time: "17:00", day: 3, color: "#ef4444", trainer: "Ana" },
+  { name: "Boxing", time: "18:00", day: 1, color: "#f59e0b", trainer: "Miguel" },
+  { name: "Boxing", time: "18:00", day: 3, color: "#f59e0b", trainer: "Miguel" },
+  { name: "Zumba", time: "19:00", day: 1, color: "#ec4899", trainer: "Maria" },
+  { name: "Zumba", time: "19:00", day: 3, color: "#ec4899", trainer: "Maria" },
+  { name: "Natacion", time: "19:00", day: 0, color: "#3b82f6", trainer: "Patricia" },
+  { name: "Natacion", time: "19:00", day: 4, color: "#3b82f6", trainer: "Patricia" },
+  { name: "Yoga", time: "20:00", day: 1, color: "#22d3ee", trainer: "Lucia" },
+  { name: "Yoga", time: "20:00", day: 3, color: "#22d3ee", trainer: "Lucia" },
+];
+
+function getClass(time: string, dayIdx: number): ClassEntry | undefined {
+  return schedule.find(c => c.time === time && c.day === dayIdx);
+}
+---
+
+<section class="section" id="horarios">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-red">PLANIFICA TU SEMANA</span>
+      <h2>HORARIO DE <span class="text-red">CLASES</span></h2>
+      <span class="accent-line"></span>
+      <p>Mas de 50 clases semanales para todos los niveles. Encuentra tu horario ideal.</p>
+    </div>
+
+    <div class="schedule-wrapper">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th class="time-col">Hora</th>
+            {days.map(day => (
+              <th>{day}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {timeSlots.map(time => (
+            <tr>
+              <td class="time-cell">{time}</td>
+              {days.map((_, dayIdx) => {
+                const cls = getClass(time, dayIdx);
+                return (
+                  <td class={cls ? 'has-class' : ''}>
+                    {cls && (
+                      <div class="class-slot" style={`border-left: 3px solid ${cls.color}; background: ${cls.color}15;`}>
+                        <span class="slot-name" style={`color: ${cls.color}`}>{cls.name}</span>
+                        <span class="slot-trainer">{cls.trainer}</span>
+                      </div>
+                    )}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="schedule-legend">
+      <span class="legend-item"><span class="legend-dot" style="background: #dc2626"></span> CrossFit</span>
+      <span class="legend-item"><span class="legend-dot" style="background: #ef4444"></span> Spinning</span>
+      <span class="legend-item"><span class="legend-dot" style="background: #22d3ee"></span> Yoga</span>
+      <span class="legend-item"><span class="legend-dot" style="background: #f59e0b"></span> Boxing</span>
+      <span class="legend-item"><span class="legend-dot" style="background: #10b981"></span> Funcional</span>
+      <span class="legend-item"><span class="legend-dot" style="background: #f97316"></span> HIIT</span>
+      <span class="legend-item"><span class="legend-dot" style="background: #ec4899"></span> Zumba</span>
+      <span class="legend-item"><span class="legend-dot" style="background: #3b82f6"></span> Natacion</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .schedule-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+
+  .schedule-table th {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: var(--bg-dark);
+    padding: 1rem 0.75rem;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .schedule-table th.time-col {
+    width: 80px;
+    text-align: left;
+  }
+
+  .schedule-table td {
+    padding: 0.4rem;
+    border: 1px solid #e5e7eb;
+    vertical-align: top;
+    height: 54px;
+  }
+
+  .time-cell {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1rem;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding-left: 0.75rem !important;
+  }
+
+  .class-slot {
+    padding: 0.35rem 0.5rem;
+    border-radius: 2px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .slot-name {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+
+  .slot-trainer {
+    font-size: 0.65rem;
+    color: var(--text-light);
+  }
+
+  .schedule-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+</style>

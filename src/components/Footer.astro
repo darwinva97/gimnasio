@@ -1,0 +1,214 @@
+---
+const hours = [
+  { day: "Lunes - Viernes", time: "5:00 AM - 11:00 PM" },
+  { day: "Sabados", time: "6:00 AM - 10:00 PM" },
+  { day: "Domingos y Feriados", time: "7:00 AM - 6:00 PM" },
+];
+
+const links = [
+  { label: "Clases", href: "#clases" },
+  { label: "Planes", href: "#planes" },
+  { label: "Trainers", href: "#trainers" },
+  { label: "Horarios", href: "#horarios" },
+  { label: "Contacto", href: "#contacto" },
+];
+
+const socials = [
+  { label: "Instagram", href: "#", icon: "IG" },
+  { label: "Facebook", href: "#", icon: "FB" },
+  { label: "TikTok", href: "#", icon: "TK" },
+  { label: "YouTube", href: "#", icon: "YT" },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>&#128170;</span>
+          <span class="logo-text">IRON<span class="text-red">FORGE</span></span>
+        </div>
+        <p>El centro fitness mas completo de Lima. Transforma tu cuerpo, transforma tu vida.</p>
+        <div class="social-links">
+          {socials.map(s => (
+            <a href={s.href} class="social-link" aria-label={s.label}>{s.icon}</a>
+          ))}
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links</h4>
+        {links.map(l => (
+          <a href={l.href} class="footer-link">{l.label}</a>
+        ))}
+      </div>
+
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        {hours.map(h => (
+          <div class="hour-row">
+            <span class="day">{h.day}</span>
+            <span class="time">{h.time}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="footer-col">
+        <h4>Ubicacion</h4>
+        <p>Av. San Borja Norte 765</p>
+        <p>San Borja, Lima - Peru</p>
+        <p class="mt-1">
+          <strong class="text-red">Tel:</strong> (01) 555-0123
+        </p>
+        <p>
+          <strong class="text-red">WhatsApp:</strong> +51 999 888 777
+        </p>
+        <p>
+          <strong class="text-red">Email:</strong> info@ironforge.pe
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 IronForge Centro Fitness. Todos los derechos reservados.</p>
+      <p>Hecho con fuerza en Lima, Peru</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--bg-dark);
+    color: #d1d5db;
+    padding: 4rem 0 1.5rem;
+    border-top: 3px solid var(--secondary);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .logo-text {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.75rem;
+    color: #fff;
+    letter-spacing: 0.15em;
+  }
+
+  .footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: #9ca3af;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #1f2937;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+
+  .social-link:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+  }
+
+  .footer-col h4 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-link {
+    display: block;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    transition: color 0.3s;
+  }
+
+  .footer-link:hover {
+    color: var(--secondary);
+  }
+
+  .hour-row {
+    margin-bottom: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .hour-row .day {
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .hour-row .time {
+    color: var(--secondary);
+    font-weight: 500;
+  }
+
+  .footer-col p {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: #9ca3af;
+  }
+
+  .mt-1 { margin-top: 0.75rem; }
+
+  .footer-bottom {
+    border-top: 1px solid #1f2937;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #6b7280;
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,145 @@
+---
+const stats = [
+  { number: "2,500+", label: "Miembros Activos" },
+  { number: "50+", label: "Clases / Semana" },
+  { number: "15", label: "Trainers Elite" },
+  { number: "2,000m²", label: "De Puro Fitness" },
+];
+---
+
+<section class="hero" id="inicio">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <span class="badge badge-red animate-fade-up">CENTRO FITNESS #1 EN LIMA</span>
+    <h1 class="hero-title animate-fade-up">
+      TRANSFORMA TU CUERPO.<br/>
+      <span class="text-red">TRANSFORMA TU VIDA.</span>
+    </h1>
+    <p class="hero-sub animate-fade-up">
+      El gym mas completo de Lima con equipos de ultima generacion
+      y entrenadores certificados. Tu mejor version comienza aqui.
+    </p>
+    <div class="hero-buttons animate-fade-up">
+      <a href="#contacto" class="btn btn-primary">EMPIEZA HOY</a>
+      <a href="#planes" class="btn btn-secondary">VER PLANES</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map(stat => (
+          <div class="stat-item">
+            <span class="stat-number">{stat.number}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80') center/cover no-repeat;
+    color: #fff;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 10, 0.92) 0%,
+      rgba(10, 10, 10, 0.7) 50%,
+      rgba(220, 38, 38, 0.3) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 120px;
+    padding-bottom: 60px;
+    max-width: 800px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    margin: 1.25rem 0;
+    line-height: 1.05;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: #d1d5db;
+    max-width: 550px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(10px);
+    border-top: 2px solid var(--secondary);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.75rem 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stat-item:last-child {
+    border-right: none;
+  }
+
+  .stat-number {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
+    color: var(--secondary);
+    letter-spacing: 0.05em;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      padding-top: 100px;
+      padding-bottom: 40px;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-item:nth-child(2) {
+      border-right: none;
+    }
+  }
+</style>

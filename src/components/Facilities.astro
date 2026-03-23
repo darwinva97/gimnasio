@@ -1,0 +1,137 @@
+---
+const facilities = [
+  {
+    name: "Sala de Pesas",
+    desc: "500m2 con equipos Hammer Strength, racks olimpicos y mas de 5 toneladas en discos y mancuernas.",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80",
+  },
+  {
+    name: "Sala de Cardio",
+    desc: "40+ maquinas de ultima generacion: cintas, elipticas, bicicletas y remos con pantallas integradas.",
+    image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80",
+  },
+  {
+    name: "Zona Funcional",
+    desc: "Area de entrenamiento funcional con turf, trineos, battle ropes, kettlebells y zona de CrossFit.",
+    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
+  },
+  {
+    name: "Piscina Semi-Olimpica",
+    desc: "Piscina temperada de 25m con 6 carriles. Clases de natacion, aquagym y nado libre.",
+    image: "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=600&q=80",
+  },
+  {
+    name: "Sauna y Spa",
+    desc: "Sauna seco y humedo, jacuzzi, zona de relajacion y servicio de masajes deportivos.",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbec6e?w=600&q=80",
+  },
+  {
+    name: "Zona de Nutricion",
+    desc: "Juice bar con batidos proteicos, snacks saludables y consultorio de nutricion deportiva.",
+    image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=600&q=80",
+  },
+];
+---
+
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-neon">2,000 M2 DE PURO FITNESS</span>
+      <h2>NUESTRAS <span class="text-red">INSTALACIONES</span></h2>
+      <span class="accent-line"></span>
+      <p>Equipos de clase mundial en un espacio disenado para tu rendimiento maximo.</p>
+    </div>
+
+    <div class="facilities-grid">
+      {facilities.map((fac) => (
+        <div class="facility-card">
+          <div class="facility-image">
+            <img src={fac.image} alt={fac.name} loading="lazy" />
+            <div class="facility-overlay"></div>
+          </div>
+          <div class="facility-info">
+            <h3>{fac.name}</h3>
+            <p>{fac.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .facility-card {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    cursor: pointer;
+  }
+
+  .facility-image {
+    position: absolute;
+    inset: 0;
+  }
+
+  .facility-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .facility-card:hover .facility-image img {
+    transform: scale(1.1);
+  }
+
+  .facility-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.2) 60%, transparent);
+  }
+
+  .facility-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    z-index: 2;
+  }
+
+  .facility-info h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .facility-info p {
+    font-size: 0.85rem;
+    color: #d1d5db;
+    line-height: 1.6;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .facility-card:hover .facility-info p {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 900px) {
+    .facilities-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .facilities-grid { grid-template-columns: 1fr; }
+    .facility-card { height: 260px; }
+    .facility-info p { opacity: 1; transform: none; }
+  }
+</style>
